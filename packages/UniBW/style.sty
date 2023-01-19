@@ -1,0 +1,131 @@
+\ProvidesPackage{packages/UniBw/style}
+
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{acronym}
+\usepackage{changepage}
+
+
+% \usepackage{hyperref} % Add in the end
+
+% Packages for arrowlists for item lists of patterns
+\usepackage{enumitem}
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
+
+% Decreases the spacing between itemize items
+
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{\tempone\addtolength{\itemsep}{-0.3\baselineskip}}{\temptwo}
+
+\restylefloat{table}
+
+% School name and location
+\university{University of the Bundeswehr}
+\universitycity{Munich}
+\universitystate{Bavaria}
+
+% School color found from university's graphic identity document:
+\definecolor{SchoolColor}{rgb}{0.9531, 0.4687, 0.1289} % UniBw
+\definecolor{chaptergrey}{rgb}{0.9531, 0.4687, 0.1289} % for chapter numbers (UniBw)
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+}
+
+% Formatting guidelines found from Dean's Office
+\renewcommand{\frontmatter}{
+	\input{frontmatter/personalize}
+	\maketitle
+	\copyrightpage
+	\abstractpage
+	\tableofcontents
+	\listoffigures % optional 
+% 	\listoftables  % optional 
+	\dedicationpage
+	\acknowledgments
+}
+
+\renewcommand{\maketitle}{
+%   Page 1, UniBw format
+	\thispagestyle{empty}
+	\begin{center}
+	\Huge {\thetitle} \\
+	\vspace{40pt}
+    \normalsize \\
+    \textsc{Max Mustermann}\\
+	\vspace{20pt}
+    \end{center}
+    \justifying
+	\textsc{Vollständiger Abdruck der von der Fakultät für Informatik der Universität der Bundeswehr München zur Erlangung des akademischen Grades eines\\
+    \vspace{20}
+    \begin{center}
+    Doktors der Naturwissenschaften (Dr. rer. nat.) \\ \\ 
+    \end{center}
+    genehmigten Dissertation.
+	}
+	\end{center}
+	\vspace{100pt}
+	\begin{table}[H]
+    \begin{tabular}{ll}
+    \multicolumn{2}{l}{\textsc{Gutachter/Gutachterin:}}           \\
+    $ \hspace{15em} \textsc{1. \firstreviewer{}}$\\
+    $ \hspace{15em} \textsc{2. \secondreviewer{}}$
+    \end{tabular}
+    \end{table}
+    \vspace{100}
+    \justifying
+    \textsc{Die Dissertation wurde am XX. Monat 202X bei der Universität der Bundeswehr München eingereicht und durch die Fakultät für Informatik am XX. Monat 202X angenommen. Die mündliche Prüfung fand am XX. Monat 202X statt.}
+	\vspace*{\fill}
+}
+
+\newcommand{\copyrightpage}{
+	\newpage
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\scshape \noindent \small \copyright \small 2100\hspace{3pt}-- \theauthor \\
+	\noindent all rights reserved.
+	\vspace*{\fill}
+	\newpage
+	\rm
+}
+
+\newcommand{\acknowledgments}{
+    \pagenumbering{arabic}
+	\chapter*{Acknowledgments}
+	\noindent
+    \pagenumbering{roman}
+	\input{frontmatter/thanks}
+	\vspace*{\fill} 
+    \setcounter{page}{3}
+    \newpage
+	
+	
+}
+
+\newcommand{\abstractpage}{
+	\newpage
+	\pagenumbering{roman}
+	\setcounter{page}{4}
+	\pagestyle{fancy}
+	\renewcommand{\headrulewidth}{0.0pt}
+	\vspace*{20pt}
+	\begin{center}
+	\vspace*{100pt}
+	\scshape {\Large Abstract} \\ \rm
+	\end{center}
+	\input{frontmatter/abstract}
+	\vspace*{\fill}
+	\newpage \lhead{} \rhead{}
+	\cfoot{\thepage}
+}
+
+
